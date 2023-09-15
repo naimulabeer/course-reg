@@ -10,8 +10,8 @@ function Cart({ selectedCourse, totalCredit, totalCost }) {
 
       <h1 className="font-semibold ">Course Name</h1>
 
-      {selectedCourse.map((course) => (
-        <li className="list-decimal" key={course["course-name"]}>
+      {selectedCourse.map((course, index) => (
+        <li className="list-decimal" key={index}>
           {course}
         </li>
       ))}

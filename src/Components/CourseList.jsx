@@ -2,12 +2,14 @@ import Cart from "./Cart";
 import { useState } from "react";
 import { useEffect } from "react";
 import { PiBookOpenLight, PiCurrencyDollarBold } from "react-icons/pi";
+import Swal from "sweetalert2";
 
 function CourseList() {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [totalCredit, setTotalCredit] = useState(0);
+  const [remainingCredit, setRemainingCredit] = useState(20);
 
   useEffect(() => {
     fetch("./data.json")
@@ -16,10 +18,41 @@ function CourseList() {
   });
 
   const handleSelect = (course) => {
-    setSelectedCourse([...selectedCourse, course["course-name"]]);
-    setTotalCredit(totalCredit + course.credit);
-    setTotalCost(totalCost + course.price);
-    console.log(selectedCourse);
+    const isExist = selectedCourse.find(
+      (item) => item === course["course-name"]
+    );
+
+    if (isExist) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Course already added!",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
+    } else {
+      if (totalCredit + course.credit > 20) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Total credits cannot exceed 20!",
+        });
+      } else {
+        setSelectedCourse([...selectedCourse, course["course-name"]]);
+        setTotalCredit(totalCredit + course.credit);
+        setTotalCost(totalCost + course.price);
+
+        const newRemainingCredits = remainingCredit - course.credit;
+        if (newRemainingCredits < 0) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Remaining credits cannot go below 0!",
+          });
+        } else {
+          setRemainingCredit(newRemainingCredits);
+        }
+      }
+    }
   };
 
   return (
