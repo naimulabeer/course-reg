@@ -89,6 +89,7 @@ function CourseList() {
           selectedCourse={selectedCourse}
           totalCredit={totalCredit}
           totalCost={totalCost}
+          remainingCredit={remainingCredit}
         />
       </div>
     </div>

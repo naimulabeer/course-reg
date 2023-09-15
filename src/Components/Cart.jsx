@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-function Cart({ selectedCourse, totalCredit, totalCost }) {
+function Cart({ selectedCourse, totalCredit, totalCost, remainingCredit }) {
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-[#2F80ED] font-semibold">
-        Credit Hour Remaining 7 hr
+        Credit Hour Remaining {remainingCredit}
       </h1>
       <div className="bg-opacity-30 border-t-2 border-[#1C1B1B33]"></div>
 
@@ -20,7 +20,7 @@ function Cart({ selectedCourse, totalCredit, totalCost }) {
 
       <span>Total Credit Hour : {totalCredit}</span>
       <div className="bg-opacity-30 border-t-2 border-[#1C1B1B33]"></div>
-      <span>Total Price : {totalCost}</span>
+      <span>Total Price : {totalCost} USD</span>
     </div>
   );
 }
