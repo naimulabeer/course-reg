@@ -1,14 +1,26 @@
-function Cart() {
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line react/prop-types
+function Cart({ selectedCourse, totalCredit, totalCost }) {
   return (
-    <div className="flex flex-col text-center ">
-      <h1>Credit Hour Remaining 7 hr</h1>
-      <h2>Course Name</h2>
-      <p>
-        1 Introduction to c programming 2 Introduction to C++ for DSA 3 Software
-        Engineering
-      </p>
-      <span>Total Credit Hour : 13</span>
-      <span>Total Price : 48000 USD</span>
+    <div className="flex flex-col gap-5">
+      <h1 className="text-[#2F80ED] font-semibold">
+        Credit Hour Remaining 7 hr
+      </h1>
+      <div className="bg-opacity-30 border-t-2 border-[#1C1B1B33]"></div>
+
+      <h1 className="font-semibold ">Course Name</h1>
+
+      {selectedCourse.map((course) => (
+        <li className="list-decimal" key={course["course-name"]}>
+          {course}
+        </li>
+      ))}
+
+      <div className="bg-opacity-30 border-t-2 border-[#1C1B1B33]"></div>
+
+      <span>Total Credit Hour : {totalCredit}</span>
+      <div className="bg-opacity-30 border-t-2 border-[#1C1B1B33]"></div>
+      <span>Total Price : {totalCost}</span>
     </div>
   );
 }
