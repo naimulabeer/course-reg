@@ -24,7 +24,7 @@ function CourseList() {
 
     if (isExist) {
       Swal.fire({
-        icon: "error",
+        icon: "warning",
         title: "Oops...",
         text: "Course already added!",
         footer: '<a href="">Why do I have this issue?</a>',
