@@ -56,14 +56,16 @@ function CourseList() {
   };
 
   return (
-    <div className="flex mt-10 gap-12">
-      <div className="grid grid-cols-3 gap-10 w-[1000px]">
+    <div className="flex flex-col lg:flex-row mt-10 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:w-[1000px]">
         {courses.map((course) => (
-          <div className="flex flex-col gap-2" key={course["course-name"]}>
+          <div className="flex flex-col gap-3" key={course["course-name"]}>
             <img src={course.image} alt={course["course-name"]} />
             <h2 className="font-bold">{course["course-name"]}</h2>
-            <p className="text-[#1C1B1B99] ">{course["course-details"]}</p>
-            <div className="flex justify-between ">
+            <p className="text-[#1C1B1B99] text-sm ">
+              {course["course-details"]}
+            </p>
+            <div className="flex justify-evenly gap-10">
               <div className="flex gap-3 items-center ">
                 <PiCurrencyDollarBold />
                 <p>Price: {course.price}</p>
@@ -77,7 +79,7 @@ function CourseList() {
 
             <button
               onClick={() => handleSelect(course)}
-              className="text-white bg-[#2F80ED] rounded-lg px-1 py-1"
+              className="text-white bg-[#2F80ED] rounded-lg px-1 py-1 mt-2"
             >
               Select
             </button>
